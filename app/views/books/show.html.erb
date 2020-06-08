@@ -1,0 +1,24 @@
+<div class = 'container' >
+	<div class="row">
+		<div class="col-xs-3">
+			<%= render '/all', {user: @user, book: @postbook} %>
+		</div>
+		<div class="col-xs-9">
+			<h1>Book detail</h1>
+			<table class="table">
+				<tr>
+					<td><%= attachment_image_tag @user, :profile_image, format:'jpeg', fallback: 'no_image.jpg', size: '40x40' %><br>
+						<%= link_to @user.name, user_path(@user.id) %>
+					</td>
+					<td><%= @book.title %></td>
+					<td><%= @book.body %></td>
+				    <% if @book.user.id != current_user.id %>
+				    <% else %>
+						<td ><%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-success" %></td>
+						<td ><%= link_to 'Destroy',book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger"%></td>
+					<% end %>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

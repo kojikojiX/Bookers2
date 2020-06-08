@@ -1,0 +1,21 @@
+<div class= "container">
+	<h2>User info</h2>
+	<%= form_for(@user) do |f| %>
+		<% if f.object.errors.any? %>
+		<%= pluralize(f.object.errors.count,"error") %>
+		    <ul>
+		        <% f.object.errors.full_messages.each do |message| %>
+		            <li><%= message %></li>
+		        <% end %>
+		    </ul>
+		<% end %>
+		<strong>Name</strong>
+		<%= f.text_field :name %>
+		<p>Image</p>
+		<%= f.attachment_field :profile_image %>
+		<strong>Introduction</strong>
+		<%= f.text_area :introduction %><br>
+		<%= f.submit 'Update User' %>
+
+	<% end %>
+</div>
